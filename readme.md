@@ -1,6 +1,6 @@
 # 笔记
 # 课件和笔记都是摘自尚硅谷的promise相关教程
-[B站教程地址]('https://www.bilibili.com/video/BV1GA411x7z1/?spm_id_from=333.999.header_right.fav_list.click&vd_source=5b3402369f2047c6a7873145482528ad')
+[B站教程地址](https://www.bilibili.com/video/BV1GA411x7z1/?spm_id_from=333.999.header_right.fav_list.click&vd_source=5b3402369f2047c6a7873145482528ad)
 ## 1.1. Promise 是什么?
 ###  1.1.1. 理解
 ####   1. 抽象表达: 
