@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise 封装 AJAX</title>
+    <link crossorigin="anonymous"
+        href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap-grid.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 封装 AJAX 操作</h2>
+        <button class="btn btn-primary" id="btn">点击发送 AJAX</button>
+    </div>
+</body>
+<script>
+    const btn = document.getElementById('btn')
+    btn.onclick = function () {
+        //ajax原生写法
+        /*   const xhr = new XMLHttpRequest()
+        xhr.open('GET', 'http://127.0.0.1:8000')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    //控制台输出响应体
+                    console.log(JSON.parse(xhr.response).name);
+                } else {
+                    //控制台输出状态码
+                    console.log(xhr.status);
+                }
+            }
+        } */
+        //promise
+        const p = new Promise((res, rej) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', 'http://127.0.0.1:8000')
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //控制台输出响应体
+                        res(xhr.response)
+                    } else {
+                        //控制台输出状态码
+                        rej(xhr.status)
+                    }
+                }
+            }
+        })
+            /* 
+            Promise中通过.then第二个回调和通过.catch获取reject()方法解析
+            reject（失败）后的东西，一定会进入then中的第二个回调，如果then中没有写第二个回调，则进入catch
+            resolve（成功）的东西，一定会进入then的第一个回调，肯定不会进入catch
+            */
+            .then((value) => {
+                console.log(JSON.parse(value));
+            }).catch((reason) => {
+                console.log(reason);
+            })
+    }
+</script>
+
+</html>
