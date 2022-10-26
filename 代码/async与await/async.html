@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function main() {
+            //1.如果返回值是一个非promise类型的数据
+            //结果是一个成功的promise对象，结果值为函数返回值
+            //return 521
+            //2.如果返回一个promise对象
+            /*  return new Promise((res,rej)=>{
+                 //返回成功状态
+                 // res('OK')
+                 //返回失败状态
+                 // rej('Error')
+             }) */
+            //3.抛出异常
+            throw 'fail'
+        }
+
+        let result = main()
+        //熟悉 Promise 的就知道其异步结果是通过 .then() 或者 .catch() 方法来获取并进行进一步处理的，
+        //这样一个道理，定义的异步函数中的返回值会当成 resolve 状态来处理，一般用 .then() 方法处理，
+        //而如果定义的异步函数抛出错误，例如变量未定义，则会被当做 reject 状态来处理，一般使用 .catch() 方法来处理；
+
+        console.log(result);
+    </script>
+</body>
+
+</html>
